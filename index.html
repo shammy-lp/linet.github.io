@@ -1,1 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-red: #ff0033;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --text-light: #f0f0f0;
+            --text-muted: #aaaaaa;
+            --accent-color: #ff0033;
+            --transition-speed: 0.3s;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .side-nav {
+            background-color: var(--darker-bg);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            width: 280px;
+            border-right: 1px solid rgba(255, 0, 51, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            margin-bottom: 3rem;
+        }
+
+        .nav-brand h1 {
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all var(--transition-speed);
+            display: block;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-light);
+            background: rgba(255, 0, 51, 0.1);
+            transform: translateX(5px);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-red);
+            border-left: 3px solid var(--primary-red);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            margin-left: 280px;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 4rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .hero-content .highlight {
+            color: var(--primary-red);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-red);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all var(--transition-speed);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        #about {
+            background: var(--dark-bg);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        /* Blogs Section */
+        #blogs {
+            background: var(--darker-bg);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: var(--primary-red);
+            opacity: 0.8;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--primary-red);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services Section */
+        #services {
+            background: var(--dark-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            transition: all var(--transition-speed);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--darker-bg);
+        }
+
+        .contact-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .submit-btn:hover {
+            background: #ff1a47;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            transition: all var(--transition-speed);
+        }
+
+        .social-link:hover {
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .side-nav {
+                transform: translateX(-100%);
+                transition: transform var(--transition-speed);
+                width: 280px;
+            }
+
+            .side-nav.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .section {
+                padding: 2rem 0;
+                min-height: auto;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+    
+    <div class="container">
+        <!-- Side Navigation -->
+        <nav class="side-nav" id="sideNav">
+            <div class="nav-brand">
+                <h1>Portfolio</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Me</a></li>
+                <li><a href="#blogs" class="nav-link">Blogs</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact Me</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section">
+                <div class="section-content fade-in-up">
+                    <div class="hero-content">
+                        <h1>Hello, I'm <span class="highlight">John Doe</span></h1>
+                        <p>A passionate web developer and designer creating digital experiences that matter.</p>
+                        <a href="#contact" class="cta-button">Get In Touch</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="section-content fade-in-up">
+                    <h2>About Me</h2>
+                    <p>I'm a professional web developer with over 5 years of experience in creating modern, responsive websites and web applications. I'm passionate about clean code, user experience, and bringing ideas to life through technology.</p>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <h3>Frontend Development</h3>
+                            <p>HTML, CSS, JavaScript, React, Vue.js</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>Backend Development</h3>
+                            <p>Node.js, Python, PHP, Databases</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>UI/UX Design</h3>
+                            <p>Figma, Adobe XD, User Research</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blogs Section -->
+            <section id="blogs" class="section">
+                <div class="section-content fade-in-up">
+                    <h2>Latest Blogs</h2>
+                    <p>Thoughts and insights about web development, design, and technology.</p>
+                    
+                    <div class="blog-grid">
+                        <div class="blog-card">
+                            <div class="blog-image"></div>
+                            <div class="blog-content">
+                                <div class="blog-date">March 15, 2024</div>
+                                <h3>The Future of Web Development</h3>
+                                <p>Exploring emerging trends and technologies that are shaping the future of web development.</p>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-image"></div>
+                            <div class="blog-content">
+                                <div class="blog-date">February 28, 2024</div>
+                                <h3>CSS Grid vs Flexbox</h3>
+                                <p>A comprehensive comparison between CSS Grid and Flexbox for modern layouts.</p>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-image"></div>
+                            <div class="blog-content">
+                                <div class="blog-date">February 10, 2024</div>
+                                <h3>Performance Optimization Tips</h3>
+                                <p>Essential techniques for optimizing website performance and user experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="section">
+                <div class="section-content fade-in-up">
+                    <h2>My Services</h2>
+                    <p>Comprehensive web solutions tailored to your business needs.</p>
+                    
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">💻</div>
+                            <h3>Web Development</h3>
+                            <p>Custom website and web application development using modern technologies.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🎨</div>
+                            <h3>UI/UX Design</h3>
+                            <p>User-centered design solutions that enhance engagement and conversion.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">📱</div>
+                            <h3>Responsive Design</h3>
+                            <p>Mobile-first approach ensuring seamless experience across all devices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-content fade-in-up">
+                    <h2>Contact Me</h2>
+                    <p>Get in touch to discuss your project or just say hello!</p>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Email</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const sideNav = document.getElementById('sideNav');
+
+        mobileNavToggle.addEventListener('click', () => {
+            sideNav.classList.toggle('active');
+        });
+
+        // Smooth Scrolling and Active Section Highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        function setActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile nav if open
+                if (window.innerWidth <= 768) {
+                    sideNav.classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // In a real application, you would send this data to a server
+            console.log('Form submitted:', { name, email, message });
+            
+            // Show success message (you can replace this with a proper notification)
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Scroll event listener
+        window.addEventListener('scroll', setActiveSection);
+
+        // Initialize active section on page load
+        setActiveSection();
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !sideNav.contains(e.target) && 
+                !mobileNavToggle.contains(e.target) &&
+                sideNav.classList.contains('active')) {
+                sideNav.classList.remove('active');
+            }
+        });
+
+        // Add fade-in animation when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
 
