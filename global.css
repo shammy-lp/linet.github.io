@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Custom warm, cozy color palette for Shammah's portfolio */
+  --background: oklch(0.98 0.01 60); /* Warm off-white */
+  --foreground: oklch(0.35 0.03 40); /* Warm dark brown */
+  --card: oklch(0.96 0.015 50); /* Nude/beige card background */
+  --card-foreground: oklch(0.35 0.03 40);
+  --popover: oklch(0.98 0.01 60);
+  --popover-foreground: oklch(0.35 0.03 40);
+  --primary: oklch(0.45 0.08 35); /* Rich brown */
+  --primary-foreground: oklch(0.98 0.01 60);
+  --secondary: oklch(0.88 0.04 45); /* Light beige */
+  --secondary-foreground: oklch(0.35 0.03 40);
+  --muted: oklch(0.92 0.02 50); /* Soft nude */
+  --muted-foreground: oklch(0.55 0.03 40);
+  --accent: oklch(0.75 0.12 15); /* Warm pink accent */
+  --accent-foreground: oklch(0.98 0.01 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.01 60);
+  --border: oklch(0.88 0.02 45);
+  --input: oklch(0.88 0.02 45);
+  --ring: oklch(0.45 0.08 35);
+  --chart-1: oklch(0.45 0.08 35);
+  --chart-2: oklch(0.75 0.12 15);
+  --chart-3: oklch(0.65 0.06 40);
+  --chart-4: oklch(0.55 0.04 50);
+  --chart-5: oklch(0.85 0.08 25);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.96 0.015 50);
+  --sidebar-foreground: oklch(0.35 0.03 40);
+  --sidebar-primary: oklch(0.45 0.08 35);
+  --sidebar-primary-foreground: oklch(0.98 0.01 60);
+  --sidebar-accent: oklch(0.88 0.04 45);
+  --sidebar-accent-foreground: oklch(0.35 0.03 40);
+  --sidebar-border: oklch(0.88 0.02 45);
+  --sidebar-ring: oklch(0.45 0.08 35);
+}
+
+.dark {
+  --background: oklch(0.25 0.02 40);
+  --foreground: oklch(0.95 0.01 60);
+  --card: oklch(0.28 0.02 40);
+  --card-foreground: oklch(0.95 0.01 60);
+  --popover: oklch(0.25 0.02 40);
+  --popover-foreground: oklch(0.95 0.01 60);
+  --primary: oklch(0.75 0.12 15);
+  --primary-foreground: oklch(0.25 0.02 40);
+  --secondary: oklch(0.35 0.03 40);
+  --secondary-foreground: oklch(0.95 0.01 60);
+  --muted: oklch(0.35 0.03 40);
+  --muted-foreground: oklch(0.65 0.02 50);
+  --accent: oklch(0.75 0.12 15);
+  --accent-foreground: oklch(0.95 0.01 60);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.95 0.01 60);
+  --border: oklch(0.35 0.03 40);
+  --input: oklch(0.35 0.03 40);
+  --ring: oklch(0.75 0.12 15);
+  --chart-1: oklch(0.75 0.12 15);
+  --chart-2: oklch(0.65 0.06 40);
+  --chart-3: oklch(0.55 0.04 50);
+  --chart-4: oklch(0.85 0.08 25);
+  --chart-5: oklch(0.45 0.08 35);
+  --sidebar: oklch(0.28 0.02 40);
+  --sidebar-foreground: oklch(0.95 0.01 60);
+  --sidebar-primary: oklch(0.75 0.12 15);
+  --sidebar-primary-foreground: oklch(0.25 0.02 40);
+  --sidebar-accent: oklch(0.35 0.03 40);
+  --sidebar-accent-foreground: oklch(0.95 0.01 60);
+  --sidebar-border: oklch(0.35 0.03 40);
+  --sidebar-ring: oklch(0.75 0.12 15);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23654321' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 11a2 2 0 1 1 4 0v3a2 2 0 0 1-4 0v-5z'/%3E%3Cpath d='M9 6a2 2 0 0 1 4 0v5a2 2 0 0 1-4 0V6z'/%3E%3Cpath d='M5 11a2 2 0 0 1 4 0v3a2 2 0 0 1-4 0v-5z'/%3E%3Cpath d='M19 11a2 2 0 0 1-4 0v-5a2 2 0 0 1 4 0v5z'/%3E%3Cpath d='M17 18a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2z'/%3E%3C/svg%3E")
+      12 12, auto;
+  }
+  button,
+  a,
+  [role="button"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23654321' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 15l-6-6-6 6'/%3E%3C/svg%3E")
+      12 12, pointer;
+  }
+}
+
+/* Custom animations for interactive elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-grow {
+  animation: grow 0.6s ease-in-out infinite;
+}
